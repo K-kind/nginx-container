@@ -1,5 +1,8 @@
 # nginx container
-This is a simple setup for running nginx on Docker.
+This is a simple setup for running nginx on Docker (Mac OS).
+
+## Requirement
+- Docker Desktop for Mac
 
 ## Getting Started
 1. Clone this repository into `~/.nginx-container` .
@@ -9,14 +12,12 @@ git clone https://github.com/K-kind/nginx-container.git ~/.nginx-container
 ```
 
 2. Add `~/.nginx-container/bin` to your `$PATH` for access to the `nginx-container` command-line utility.
-  - For **Zsh**:
-
+  * For **Zsh**:
   ```
   echo 'export PATH="$PATH:$HOME/.nginx-container/bin"' >> ~/.zshrc
   ```
 
-  - For **bash**:
-
+  * For **bash**:
   ```
   echo 'export PATH="$PATH:$HOME/.nginx-container/bin"' >> ~/.bash_profile
   ```
