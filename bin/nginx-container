@@ -2,6 +2,7 @@
 
 readonly CONTAINER_NAME="nginx-container"
 readonly CONF_PATH="../conf"
+readonly CERTS_PATH="../certs"
 
 function main() {
   local cwd
@@ -10,7 +11,7 @@ function main() {
   # run a container when no arguments are passed
   if [ -z "${1}" ]; then
     echo 'starting a container ...'
-    exec docker container run --rm --name "${CONTAINER_NAME}" -p 80:80 -p 443:443 -v "${cwd}/${CONF_PATH}:/etc/nginx" -d nginx
+    exec docker container run --rm --name "${CONTAINER_NAME}" -p 80:80 -p 443:443 -v "${cwd}/${CONF_PATH}:/etc/nginx" -v "${cwd}/${CERTS_PATH}:/etc/certs" -d nginx
     exit 0
   fi
 

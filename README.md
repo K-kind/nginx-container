@@ -26,18 +26,18 @@ git clone https://github.com/K-kind/nginx-container.git ~/.nginx-container
 
 ### Example for using nginx as SSL reverse proxy
 
-1. Place your certificates to `~/.nginx-container/conf/ssl/`
+1. Place your certificates to `~/.nginx-container/certs`
 
 2. Edit settings in the `~/.nginx-container/conf/conf.d/server.conf` file
 
-These settings enable requests to the `https://local.hoge.com` to be sent to `http://localhost:8080` .
+These settings enable requests to the `https://local.test` to be sent to `http://localhost:8080` .
 
 ```conf
 server {
     listen       443 ssl;
-    server_name  local.hoge.com;
-    ssl_certificate /etc/nginx/ssl/local.hoge.com-cert.pem;
-    ssl_certificate_key /etc/nginx/ssl/local.hoge.com-key.pem;
+    server_name  local.test;
+    ssl_certificate /etc/certs/local.test-cert.pem;
+    ssl_certificate_key /etc/certs/local.test-key.pem;
 
     location / {
         proxy_pass  http://host.docker.internal:8080/;
