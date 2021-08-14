@@ -1,0 +1,37 @@
+#!/bin/bash
+
+readonly CONTAINER_NAME="nginx-container"
+readonly CONF_PATH="../conf"
+
+function main() {
+  local cwd
+  cwd="$(cd "$(dirname "$0")" && pwd)"
+
+  # run a container when no arguments are passed
+  if [ -z "${1}" ]; then
+    echo 'starting a container ...'
+    exec docker container run --rm --name "${CONTAINER_NAME}" -p 80:80 -p 443:443 -v "${cwd}/${CONF_PATH}:/etc/nginx" -d nginx
+    exit 0
+  fi
+
+  # stop the container
+  if [ "${1}" = "stop" ]; then
+    echo 'stopping the container ...'
+    exec docker container stop "${CONTAINER_NAME}"
+    exit 0
+  fi
+
+  # restart the container
+  if [ "${1}" = "restart" ]; then
+    echo 'restarting the container ...'
+    exec docker container restart "${CONTAINER_NAME}"
+    exit 0
+  fi
+
+  echo 'Error: invalid argument'
+  exit 1
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  main "$@"
+fi
